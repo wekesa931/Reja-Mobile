@@ -24,6 +24,7 @@ import { RootState } from '../redux';
 import LoaderScreen from '../screens/intro/LoaderScreen';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/utils/customHeaderButton/CustomHeaderButton';
+import AuthOptions from '../screens/intro/AuthOptionScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,19 +36,14 @@ const commonHeaderStyles = {
 const introHeaders = {
     headerTitle: null,
     headerStyle: {
-        backgroundColor: Colors.secondary,
+        backgroundColor: Colors.white,
         shadowRadius: 0,
         shadowOffset: {
             height: 0,
         },
         shadowColor: 'transparent',
         elevation: 0
-    },
-    shadowRadius: 0,
-    shadowOffset: {
-        height: 0,
-    },
-    shadowColor: 'transparent'
+    }
 } as unknown as StackNavigationOptions
 
 const mainScreensHeader = {
@@ -79,6 +75,7 @@ const InitialNavigation = () => {
                     <Stack.Screen name={SCREENS.secondScreen} component={ScreenTwo} options={introHeaders} />
                     <Stack.Screen name={SCREENS.thirdScreen} component={ScreenThree} options={introHeaders} />
                     <Stack.Screen name={SCREENS.forthScreen} component={ScreenFour} options={introHeaders} />
+                    <Stack.Screen name={SCREENS.authOptions} component={AuthOptions} options={introHeaders} />
                     <Stack.Screen name={SCREENS.signUp} component={SignUpPage} options={commonHeaderStyles} />
                 </Stack.Navigator> :
                     <Drawer.Navigator

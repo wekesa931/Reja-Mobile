@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Image, Text, View, StyleSheet } from 'react-native'
+import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { Ionicons } from '@expo/vector-icons'
 // import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,73 +15,156 @@ interface IProps {
     navigation: StackNavigationProp<any, any>
     statementText: string
     nextPage: string
+    screen: number
 }
 
 const IntroScreens = (props: IProps) => {
+    const PageProgress = () => <View style={styles.progress}></View>;
+    const loader = () => {
+        let component = <></>
+        if (props.screen === 1) {
+            component = <>
+                <PageProgress />
+            </>
+        } else if (props.screen === 2) {
+            component = <>
+                <PageProgress />
+                <PageProgress />
+            </>
+        } else if (props.screen === 3) {
+            component = <>
+                <PageProgress />
+                <PageProgress />
+                <PageProgress />
+            </>
+        } else {
+            component = <>
+                <PageProgress />
+                <PageProgress />
+                <PageProgress />
+                <PageProgress />
+            </>
+        }
+        return component
+    }
     // @ts-ignore
-    const SkipToLogin = ({ onPress, color }) => <Item color={color} title={AppStrings.skip} onPress={onPress} />;
     useEffect(() => {
         props.navigation.setOptions({
             // @ts-ignore
-            headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                <SkipToLogin color={Colors.accent} onPress={() => props.navigation.replace(SCREENS.signUp)} />
-                {/* @ts-ignore */}
-                <Item
-                    // style={styles.nextColor}
-                    color={Colors.accent}
-                    title="Favorite"
-                    iconName="arrow-forward-outline"
-                    onPress={() => props.navigation.replace(SCREENS.signUp)}
-                />
+            headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                {loader()}
             </HeaderButtons>
         })
     });
-    return <View style={styles.container}>
-        {/* @ts-ignore */}
-        <Image style={styles.logo} source={props.vecImage} />
-        <View>
-            <Text style={styles.text}>{props.statementText}</Text>
+    return <View style={{ backgroundColor: Colors.white }}>
+        <View style={styles.skipToNext}>
+            <Text
+                style={styles.skipText}
+                onPress={() => props.navigation.replace(SCREENS.authOptions)}
+            >{AppStrings.skip}</Text>
+            <Ionicons
+                name="arrow-forward-outline"
+                color={Colors.accent} size={23}
+                onPress={() => props.navigation.replace(SCREENS.authOptions)}
+            />
         </View>
-        <View style={styles.next}>
-            <Text style={{...styles.text, ...styles.nextText}}
+        <View style={styles.container}>
+            {/* @ts-ignore */}
+            <Image style={styles.logo} source={props.vecImage} />
+            <View style={{
+                height: 170
+            }}>
+                <Text style={styles.text}>{props.statementText}</Text>
+            </View>
+            <TouchableOpacity
+                style={styles.next}
                 onPress={() => props.navigation.replace(props.nextPage)}
-            >{AppStrings.next}</Text>
-            <Ionicons name="chevron-forward-outline" size={30} color={Colors.accent} />
+            >
+                <Text style={{ ...styles.text, ...styles.nextText }}
+                    onPress={() => props.navigation.replace(props.nextPage)}
+                >{AppStrings.next}</Text>
+            </TouchableOpacity>
         </View>
     </View>
+
 }
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        justifyContent: 'center',
+        paddingTop: 100,
         alignItems: 'center',
         height: '100%',
         width: '100%',
-        backgroundColor: Colors.secondary
+
+    },
+    progress: {
+        width: 80,
+        marginLeft: 15,
+        height: 15,
+        backgroundColor: Colors.accent,
+        borderRadius: 10
+    },
+    skipToNext: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingTop: 10,
+        paddingRight: 10
     },
     logo: {
         width: 350,
         height: 350,
-        marginBottom: 30
+        marginBottom: 20
+    },
+    skipText: {
+        fontSize: 17,
+        color: Colors.accent,
+        marginRight: 10
     },
     text: {
         textAlign: 'center',
-        color: Colors.white,
+        color: Colors.black,
         fontWeight: '900',
-        fontSize: 15
+        fontSize: 16
     },
     next: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        width: '100%',
-        marginRight: 50,
-        marginTop: 50
+        justifyContent: 'center',
+        width: '90%',
+        borderRadius: 5,
+        padding: 10,
+        backgroundColor: Colors.secondary
+        // marginRight: 50,
+        // marginLeft: 50,
+        // marginTop: 50
     },
     nextText: {
         color: Colors.accent,
+        fontWeight: 'bold',
+        fontSize: 16
     }
 })
 
 export default IntroScreens;
+
+
+// const SkipToLogin = ({ onPress, color }) => <Item color={color} title={AppStrings.skip} onPress={onPress} />;
+//     useEffect(() => {
+//         props.navigation.setOptions({
+//             // @ts-ignore
+//             headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//                 <SkipToLogin color={Colors.accent} onPress={() => props.navigation.replace(SCREENS.signUp)} />
+//                 {/* @ts-ignore */}
+//                 <Item
+//                     // style={styles.nextColor}
+//                     color={Colors.accent}
+//                     title="Favorite"
+//                     iconName="arrow-forward-outline"
+//                     onPress={() => props.navigation.replace(SCREENS.signUp)}
+//                 />
+//             </HeaderButtons>
+//         })
+//     });
+

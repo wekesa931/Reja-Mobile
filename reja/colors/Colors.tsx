@@ -3,7 +3,8 @@ const Colors = {
     secondary: "#d63aab",
     tertiary: "#e02d1e",
     accent: "#ffaa00",
-    white: "white"
+    white: "#ffffff",
+    black: '#333333'
 }
 
 export default Colors;

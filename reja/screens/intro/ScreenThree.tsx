@@ -3,7 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import IntroScreens from '../../components/IntroScreens';
 import { AppStrings, SCREENS } from '../../components/utils/strings/Strings';
 
-const vecImage = require('../../assets/vectors/goals.jpg')
+const vecImage = require('../../assets/vectors/team.jpg')
 
 interface IProps {
     navigation: StackNavigationProp<any, any>
@@ -16,6 +16,7 @@ const ScreenThree = (props: IProps) => {
                 vecImage={vecImage}
                 navigation={props.navigation}
                 statementText={AppStrings.screenTwoExplanation}
+                screen={3}
     />
 }
 
