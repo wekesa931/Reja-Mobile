@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, Text, View, StyleSheet, TouchableOpacity, ImageSourcePropType } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { Ionicons } from '@expo/vector-icons'
 // import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,7 +11,7 @@ import { AppStrings, SCREENS } from './utils/strings/Strings';
 
 
 interface IProps {
-    vecImage: string
+    vecImage: ImageSourcePropType
     navigation: StackNavigationProp<any, any>
     statementText: string
     nextPage: string
@@ -69,8 +69,9 @@ const IntroScreens = (props: IProps) => {
             />
         </View>
         <View style={styles.container}>
-            {/* @ts-ignore */}
-            <Image style={styles.logo} source={props.vecImage} />
+            <View>
+                <Image style={styles.logo} source={props.vecImage} />
+            </View>
             <View style={{
                 height: 170
             }}>
@@ -80,7 +81,7 @@ const IntroScreens = (props: IProps) => {
                 style={styles.next}
                 onPress={() => props.navigation.replace(props.nextPage)}
             >
-                <Text style={{ ...styles.text, ...styles.nextText }}
+                <Text style={{ ...styles.nextText }}
                     onPress={() => props.navigation.replace(props.nextPage)}
                 >{AppStrings.next}</Text>
             </TouchableOpacity>
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     progress: {
         width: 80,
         marginLeft: 15,
-        height: 15,
+        height: 10,
         backgroundColor: Colors.accent,
         borderRadius: 10
     },
@@ -113,9 +114,11 @@ const styles = StyleSheet.create({
         paddingRight: 10
     },
     logo: {
+        // flex: 1,
         width: 350,
         height: 350,
-        marginBottom: 20
+        resizeMode: 'contain',
+        // marginBottom: 20
     },
     skipText: {
         fontSize: 17,
@@ -136,14 +139,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         backgroundColor: Colors.secondary
-        // marginRight: 50,
-        // marginLeft: 50,
-        // marginTop: 50
     },
     nextText: {
         color: Colors.accent,
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 18
     }
 })
 

@@ -25,6 +25,8 @@ import LoaderScreen from '../screens/intro/LoaderScreen';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/utils/customHeaderButton/CustomHeaderButton';
 import AuthOptions from '../screens/intro/AuthOptionScreen';
+import { SignIn } from '../screens/main/Authentication/SignIn';
+import SignUp from '../screens/main/Authentication/SignUp';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -76,7 +78,8 @@ const InitialNavigation = () => {
                     <Stack.Screen name={SCREENS.thirdScreen} component={ScreenThree} options={introHeaders} />
                     <Stack.Screen name={SCREENS.forthScreen} component={ScreenFour} options={introHeaders} />
                     <Stack.Screen name={SCREENS.authOptions} component={AuthOptions} options={introHeaders} />
-                    <Stack.Screen name={SCREENS.signUp} component={SignUpPage} options={commonHeaderStyles} />
+                    <Stack.Screen name={SCREENS.signIn} component={SignIn} options={mainScreensHeader} />
+                    <Stack.Screen name={SCREENS.signUp} component={SignUp} options={mainScreensHeader} />
                 </Stack.Navigator> :
                     <Drawer.Navigator
                         initialRouteName={AppStrings.welcome}

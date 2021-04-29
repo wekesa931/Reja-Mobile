@@ -15,17 +15,19 @@ const AuthOptions = (props: IProps) => {
         <Image style={styles.logo} source={logo} />
         <Text style={styles.welcome}>{AppStrings.authWelcome}</Text>
         <View>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn}
+                onPress={() => props.navigation.navigate(SCREENS.signIn)}>
                 <Text style={styles.txt}>{AppStrings.logIn}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{
-                ...styles.btn, 
+                ...styles.btn,
                 backgroundColor: Colors.white,
                 borderWidth: 2,
                 borderColor: Colors.primary
             }}
-            onPress={() => props.navigation.push(SCREENS.signIn)}>
-                <Text style={{...styles.txt, color: Colors.primary }}>{AppStrings.signIn}</Text>
+            onPress={() => props.navigation.navigate(SCREENS.signUp)}
+            >
+                <Text style={{ ...styles.txt, color: Colors.primary }}>{AppStrings.signIn}</Text>
             </TouchableOpacity>
         </View>
     </View>
