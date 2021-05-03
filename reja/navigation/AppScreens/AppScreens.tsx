@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const mainScreensHeader = {
     headerTintColor: Colors.white,
     headerStyle: {
-        backgroundColor: Colors.secondary,
+        backgroundColor: Colors.primary,
     },
 }
 

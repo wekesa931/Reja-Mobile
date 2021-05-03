@@ -24,7 +24,7 @@ const CustomInput = (props) => {
             backgroundColor: Colors.white,
         }}><Text style={{
             fontSize: 12,
-            color: '#757575'
+            color: '#3a3a3ab3'
         }}>{props.labelName}</Text></View>
             <TextInput
                 style={[
@@ -47,13 +47,15 @@ const CustomInput = (props) => {
 
 const styles = StyleSheet.create({
     textInput: {
+        paddingTop: 10,
+        fontSize: 13,
         padding: 5,
-        height: 50,
+        height: 45,
         width: '100%',
         marginTop: 10,
         marginBottom: 10,
-        borderColor: Colors.primary,
-        borderWidth: 2,
+        borderColor: '#d7d7d7',
+        borderWidth: 1,
         borderRadius: 0,
         textAlignVertical: 'top',
     },

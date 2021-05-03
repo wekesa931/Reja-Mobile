@@ -13,14 +13,29 @@ const initialState: IAuthenticated = {
     // @ts-ignore
     token: null,
     isLoading: true
+
 }
 
 const authReducers = (state: IAuthenticated = initialState, action: any) => {
     switch (action.type) {
-        case actionTypes.SIGN_UP_USER_START:
+        case actionTypes.AUTH_START:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                error: null
+            }
+        case actionTypes.LOG_IN_USER_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.error
+            }
+        case actionTypes.LOG_IN_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                isAuthenticated: true,
             }
         case actionTypes.SIGN_UP_USER:
             return {

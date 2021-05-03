@@ -1,9 +1,10 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Colors from '../../colors/Colors';
 import { AppStrings, SCREENS } from '../../components/utils/strings/Strings';
 
+const windowWidth = Dimensions.get('window').width;
 const logo = require("../../assets/logo.png")
 
 export interface IProps {
@@ -27,7 +28,7 @@ const AuthOptions = (props: IProps) => {
             }}
             onPress={() => props.navigation.navigate(SCREENS.signUp)}
             >
-                <Text style={{ ...styles.txt, color: Colors.primary }}>{AppStrings.signIn}</Text>
+                <Text style={{ ...styles.txt, color: Colors.primary }}>{AppStrings.signUp}</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -53,8 +54,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     btn: {
-        width: 350,
-        marginTop: 50,
+        width: windowWidth - 50,
+        marginTop: 40,
         height: 45,
         borderRadius: 8,
         justifyContent: 'center',

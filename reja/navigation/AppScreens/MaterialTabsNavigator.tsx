@@ -3,7 +3,7 @@ import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 // import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../../colors/Colors';
 import SummaryScreen from '../../screens/main/SummaryScreen';
@@ -19,7 +19,7 @@ const SummaryNavigator = () => {
                 activeColor={Colors.white}
                 inactiveColor={Colors.accent}>
                 <Tab.Screen name="Summary" component={SummaryScreen} options={{
-                    tabBarIcon: () => <Ionicons name="md-trending-up" color={Colors.white} size={23} />,
+                    tabBarIcon: () => <MaterialIcons name="insert-chart-outlined" color={Colors.white} size={23} />,
                     tabBarColor: Colors.primary
                 }} />
                 <Tab.Screen name="Upload" component={UploadScreen} options={{

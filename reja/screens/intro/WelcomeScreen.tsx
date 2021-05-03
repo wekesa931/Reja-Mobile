@@ -11,8 +11,11 @@ interface IProps {
     navigation: StackNavigationProp<any, any>
 }
 
-class Services {
-    static load(callBack: (l: any) => void) {
+export class Services {
+    static load(callBack: () => void) {
+        setTimeout(callBack, 5000);
+    }
+    static login(callBack: () => void) {
         setTimeout(callBack, 5000);
     }
 }
@@ -21,7 +24,7 @@ const RejaIconScreen = (props: IProps) => {
     const [loaded, setloaded] = useState(false);
 
     useEffect(() => {
-        Services.load(l => setloaded(true))
+        Services.load(() => setloaded(true))
     }, []);
 
     useEffect(() => {

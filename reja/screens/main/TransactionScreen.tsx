@@ -3,7 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../../colors/Colors';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import CustomHeaderButton from '../../components/utils/customHeaderButton/CustomHeaderButton';
+import CustomHeaderButton from '../../components/customHeaderButton/CustomHeaderButton';
 
 interface IProps {
     navigation: StackNavigationProp<any, any>

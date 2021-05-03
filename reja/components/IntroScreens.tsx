@@ -5,7 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { Ionicons } from '@expo/vector-icons'
 // import Icon from 'react-native-vector-icons/Ionicons';
 
-import CustomHeaderButton from '../components/utils/customHeaderButton/CustomHeaderButton';
+import CustomHeaderButton from './customHeaderButton/CustomHeaderButton';
 import Colors from '../colors/Colors';
 import { AppStrings, SCREENS } from './utils/strings/Strings';
 
@@ -72,18 +72,14 @@ const IntroScreens = (props: IProps) => {
             <View>
                 <Image style={styles.logo} source={props.vecImage} />
             </View>
-            <View style={{
-                height: 170
-            }}>
+            <View>
                 <Text style={styles.text}>{props.statementText}</Text>
             </View>
             <TouchableOpacity
                 style={styles.next}
                 onPress={() => props.navigation.replace(props.nextPage)}
             >
-                <Text style={{ ...styles.nextText }}
-                    onPress={() => props.navigation.replace(props.nextPage)}
-                >{AppStrings.next}</Text>
+                <Text style={styles.nextText}>{AppStrings.next}</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -101,7 +97,7 @@ const styles = StyleSheet.create({
     },
     progress: {
         width: 80,
-        marginLeft: 15,
+        marginLeft: 10,
         height: 10,
         backgroundColor: Colors.accent,
         borderRadius: 10
@@ -137,34 +133,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '90%',
         borderRadius: 5,
+        marginTop: 20,
         padding: 10,
         backgroundColor: Colors.secondary
     },
     nextText: {
-        color: Colors.accent,
+        color: Colors.white,
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 13
     }
 })
 
 export default IntroScreens;
-
-
-// const SkipToLogin = ({ onPress, color }) => <Item color={color} title={AppStrings.skip} onPress={onPress} />;
-//     useEffect(() => {
-//         props.navigation.setOptions({
-//             // @ts-ignore
-//             headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-//                 <SkipToLogin color={Colors.accent} onPress={() => props.navigation.replace(SCREENS.signUp)} />
-//                 {/* @ts-ignore */}
-//                 <Item
-//                     // style={styles.nextColor}
-//                     color={Colors.accent}
-//                     title="Favorite"
-//                     iconName="arrow-forward-outline"
-//                     onPress={() => props.navigation.replace(SCREENS.signUp)}
-//                 />
-//             </HeaderButtons>
-//         })
-//     });
-

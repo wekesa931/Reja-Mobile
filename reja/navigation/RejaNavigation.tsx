@@ -23,9 +23,9 @@ import { checkUserAuthenticated } from '../redux/actions/AuthActions';
 import { RootState } from '../redux';
 import LoaderScreen from '../screens/intro/LoaderScreen';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import CustomHeaderButton from '../components/utils/customHeaderButton/CustomHeaderButton';
+import CustomHeaderButton from '../components/customHeaderButton/CustomHeaderButton';
 import AuthOptions from '../screens/intro/AuthOptionScreen';
-import { SignIn } from '../screens/main/Authentication/SignIn';
+import SignIn from '../screens/main/Authentication/SignIn';
 import SignUp from '../screens/main/Authentication/SignUp';
 
 const Stack = createStackNavigator();
@@ -51,7 +51,7 @@ const introHeaders = {
 const mainScreensHeader = {
     headerTintColor: Colors.white,
     headerStyle: {
-        backgroundColor: Colors.secondary,
+        backgroundColor: Colors.primary,
     },
 }
 
@@ -61,16 +61,13 @@ const InitialNavigation = () => {
     const store = useSelector((state: RootState) => state)
 
     const { authReducers } = store
-    const { isAuthenticated, isLoading } = authReducers
+    const { isAuthenticated } = authReducers
 
     useEffect(() => {
         dispatch(checkUserAuthenticated())
     }, []);
 
-    return <>{
-        isLoading ?
-            <LoaderScreen />
-            : <NavigationContainer>
+    return <><NavigationContainer>
                 {!isAuthenticated ? <Stack.Navigator>
                     <Stack.Screen name={SCREENS.welcome} component={RejaIconScreen} options={commonHeaderStyles} />
                     <Stack.Screen name={SCREENS.firstScreen} component={ScreenOne} options={introHeaders} />
@@ -112,7 +109,7 @@ const InitialNavigation = () => {
                     </Drawer.Navigator>
                 }
             </NavigationContainer>
-    }</>
+    </>
 }
 
 export default InitialNavigation;

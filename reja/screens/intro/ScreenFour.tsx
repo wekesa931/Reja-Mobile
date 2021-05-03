@@ -1,5 +1,6 @@
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';import IntroScreens from '../../components/IntroScreens';
+import { StackNavigationProp } from '@react-navigation/stack';
+import IntroScreens from '../../components/IntroScreens';
 import { AppStrings, SCREENS } from '../../components/utils/strings/Strings';
 
 const vecImage = require('../../assets/vectors/communication.jpg')
