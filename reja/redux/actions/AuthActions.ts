@@ -29,15 +29,27 @@ export const LogInUser = (user: ILoginUser) => {
         
         try {
             dispatch({ type: actionTypes.AUTH_START })
-            const response = await axios.get('https://jsonplaceholder.typicode.com/todos/')
-            console.log(response)
-            await AsyncStorage.setItem(
-                'token',
-                'thisismytoken'
-            );
-            dispatch({
-                type: actionTypes.LOG_IN_USER_SUCCESS
+            
+            const response = await axios.post('https://api.demo.reja.ai/auth',{
+                    api_secret: "56950e817b976b1ac979e3440ddd2ab884f634f078c9b819310243dee8d83bf3",
+                    app_key: "f1de47bf0353899c40ed",
+                    dashboard_id: user.dashboardId,
+                    email: user.email,
+                    password: user.password
             })
+            if(response.status === 200){
+                await AsyncStorage.setItem('token', response.data.access_token);
+                await AsyncStorage.setItem('clientId', JSON.stringify(response.data.user.client_id));
+                dispatch({
+                    type: actionTypes.LOG_IN_USER_SUCCESS
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.LOG_IN_USER_FAILURE,
+                    error: "Something went wrong. Contact support"
+                })
+            }
+            
         } catch (error) {
             dispatch({
                 type: actionTypes.LOG_IN_USER_FAILURE,

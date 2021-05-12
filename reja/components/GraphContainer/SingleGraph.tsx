@@ -3,43 +3,28 @@ import { LineChart } from "react-native-chart-kit";
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
 
 interface IProps {
-  labels: string[],
-  customers: number[],
-  expense: number[],
-  profit: number[],
-  revenue: number[],
-  transaction: number[]
+    labels: string[];
+    revenue: number[]
+    change: number[]
 }
 
-const GraphContainer = (props: IProps) => {
+const SingleGraph = (props: IProps) => {
   return <View>
     <LineChart
       data={{
         labels: props.labels,
         datasets: [
           {
-            data: [...props.customers],
+            data: [...props.revenue],
             strokeWidth: 2,
             color: (opacity = 1) => `rgba(255, 170, 0, 1)`,
           },{
-            data: [...props.expense],
+            data: [...props.change],
             strokeWidth: 2,
             color: (opacity = 1) => `rgb(214,58,171,1)`,
-          },{
-            data: [...props.profit],
-            strokeWidth: 2,
-            color: (opacity = 1) => `rgba(224, 45, 30,1)`,
-          },{
-            data: [...props.transaction],
-            strokeWidth: 2,
-            color: (opacity = 1) => `rgba(30,42,108,1)`,
-          },{
-            data: [...props.revenue],
-            strokeWidth: 2,
-            color: (opacity = 1) => `rgba(51,51,51,1)`,
           }
         ],
-        legend: ['Customers', 'Expense', 'Profits', 'Transaction', 'Revenues'],
+        legend: ['Revenue', 'Percentage Change'],
       }}
       width={Dimensions.get("window").width - 10} // from react-native
       height={220}
@@ -81,4 +66,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default GraphContainer
+export default SingleGraph

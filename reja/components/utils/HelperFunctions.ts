@@ -1,4 +1,6 @@
-export const formatNumber = (num: number) => {
+import Colors from "../../colors/Colors";
+
+export const formatNumber = (num: number | string) => {
     const si = [
       { value: 1, symbol: "" },
       { value: 1E3, symbol: "K" },
@@ -12,5 +14,28 @@ export const formatNumber = (num: number) => {
         break;
       }
     }
+    // @ts-ignore
     return (num / si[i].value).toFixed(2).replace(rx, "$1") + si[i].symbol;
   }
+
+export const activeBackColor = (activeCard: string, color: string, card: string) => {
+  if(activeCard === card){
+        return color
+    } else {
+        return Colors.white
+    }
+}
+export const activeTextColor = (activeCard: string, card: string) => {
+  if(activeCard === card){
+        return Colors.white
+    } else {
+        return Colors.black
+    }
+}
+export const activeIconColor = (activeCard: string, color: string,card: string) => {
+  if(activeCard === card){
+        return Colors.white
+    } else {
+        return color
+    }
+}
