@@ -6,8 +6,6 @@ import { actionTypes } from "../types"
 export const getRevenueDetails = (span: string, period: string) => {
     // @ts-ignore
     return async (dispatch: Dispatch) => {
-        console.log("period ==>", period)
-        console.log("span ==>", span)
         try {
             dispatch({ type: actionTypes.GET_REVENUE })
             const token = await AsyncStorage.getItem('token')
@@ -30,7 +28,6 @@ export const getRevenueDetails = (span: string, period: string) => {
                 overview: response.data.overview,
             })
         } catch(e) {
-            console.log("====>", e)
             if(e.message.includes('401')){
                 try {
                     dispatch({ type: actionTypes.AUTH_START })

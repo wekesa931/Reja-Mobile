@@ -30,7 +30,6 @@ export const getTransactionDetails = (span: string, period: string) => {
                 topMetrics: response.data.top_metrics,
             })
         } catch(e) {
-            console.log("====>", e)
             if(e.message.includes('401')){
                 try {
                     dispatch({ type: actionTypes.AUTH_START })
